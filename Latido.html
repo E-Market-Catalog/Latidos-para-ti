@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Ti 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #1c1b3a, #2d0b47);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    #fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      top: -40px;
+      font-size: 35px;
+      color: #ff69b4;
+      animation: fall 10s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .container {
+      background: rgba(27, 24, 58, 0.1);
+      border-radius: 25px;
+      backdrop-filter: blur(4px);
+      padding: 35px 25px 30px;
+      width: 90%;
+      max-width: 430px;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #login {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #contenido {
+      margin: 50px auto;
+      position: relative;
+    }
+
+    .franja {
+      height: 8px;
+      background: linear-gradient(90deg, #ff69b4, #ffb6c1, #ff69b4);
+      border-radius: 25px 25px 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #ffb6c1;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
+    input, button {
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 1em;
+      width: 100%;
+      outline: none;
+    }
+
+    input {
+      background: #eee;
+      color: #333;
+    }
+
+    button {
+      background: #ff69b4;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff85c1;
+    }
+
+    .mensaje-box {
+      margin-top: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(2px);
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #fff;
+      text-align: justify;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    #error {
+      color: #ff6b6b;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FONDO de corazones -->
+  <div id="fondo"></div>
+
+  <!-- LOGIN -->
+  <div class="container" id="login">
+    <div class="franja"></div>
+    <h2>Para La Niña Más Hermosa 🌸</h2>
+    <p>Mi amor, ingresa tu nombre y la clave secreta</p>
+    <input type="text" id="nombre" placeholder="Tu nombre">
+    <input type="password" id="clave" placeholder="Contraseña">
+    <button onclick="acceder()">Acceder</button>
+    <p id="error"></p>
+  </div>
+
+  <!-- MENSAJE -->
+  <div class="container hidden fade-in" id="contenido">
+    <div class="franja"></div>
+    <h2 id="saludo">Mi Mensaje Para Ti</h2>
+    <div class="mensaje-box">
+      <p>Desde el primer momento en que nuestras miradas se cruzaron, sentí que el universo me estaba hablando. Fue como si todas las canciones de amor cobraran sentido, como si el tiempo se detuviera solo para nosotros dos.</p>
+      <p>Tu risa tiene el poder de iluminar mis días, incluso los más grises. Tu voz me calma, tu presencia me completa. Cada momento contigo es un regalo, y cada recuerdo a tu lado se convierte en un tesoro que guardo con cariño en lo más profundo de mi corazón.</p>
+      <p>No hay un solo día en que no agradezca al destino por ponerte en mi camino. Eres mi paz, mi impulso, mi inspiración. Y aunque las palabras a veces se queden cortas, quiero que sepas que este detalle, sencillo pero sincero, es solo un reflejo de todo lo que siento por ti.</p>
+      <p>Gracias por existir, por ser tú, por hacerme sentir que soy importante para alguien tan increíble como tú. Te amo más de lo que imaginas, y lo haré siempre, más allá de las palabras, más allá del tiempo 💖</p>
+    </div>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script>
+    function acceder() {
+      var nombre = document.getElementById('nombre').value.trim();
+      var clave = document.getElementById('clave').value.trim();
+      var error = document.getElementById('error');
+
+      if (clave === "Miniña") {
+        document.getElementById('login').classList.add('hidden');
+        var contenido = document.getElementById('contenido');
+        contenido.classList.remove('hidden');
+        contenido.classList.add('fade-in');
+
+        if (nombre !== "") {
+          document.getElementById('saludo').textContent = "Para " + nombre + " 💖";
+        }
+
+        // Reproducir música dinámicamente
+        var iframe = document.createElement("iframe");
+        iframe.style.display = "none";
+        iframe.width = "0";
+        iframe.height = "0";
+        iframe.src = "https://www.youtube.com/embed/b_CpWmkhwq0?start=60&end=120&autoplay=1&loop=1&playlist=b_CpWmkhwq0";
+        iframe.title = "Those Eyes";
+        iframe.frameBorder = "0";
+        iframe.allow = "autoplay";
+        iframe.allowFullscreen = true;
+        document.body.appendChild(iframe);
+
+      } else {
+        error.textContent = "Contraseña incorrecta. Intenta de nuevo.";
+      }
+    }
+
+    function crearLluvia() {
+      const fondo = document.getElementById("fondo");
+      setInterval(() => {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 4 + 6) + "s";
+        heart.innerHTML = "💖";
+        fondo.appendChild(heart);
+        setTimeout(() => heart.remove(), 11000);
+      }, 400);
+    }
+
+    crearLluvia();
+  </script>
+
+</body>
+</html>
